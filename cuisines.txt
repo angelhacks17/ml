@@ -1,0 +1,10 @@
+Indian,
+Mexican,
+Vietnamese,
+Thai,
+Chinese,
+Japanese,
+American,
+French,
+Italian,
+Seafood
