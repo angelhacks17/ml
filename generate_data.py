@@ -1,9 +1,20 @@
 import numpy as np
 from random import randint
 
+cuisines = ["Indian",
+"Mexican",
+"Vietnamese",
+"Thai",
+"Chinese",
+"Japanese",
+"American",
+"French",
+"Italian",
+"Seafood"]
 
-def get_cuisines(file):
-	return ["Indian", "Chinese"]
+
+def get_cuisines():
+	return cuisines
 
 def get_data_matrix(cuisines):
 	cuisine_scores = []
@@ -20,6 +31,6 @@ Main
 """
 
 if __name__ == "__main__":
-    all_cuisines = get_cuisines("hello")
-    print(get_data_matrix(all_cuisines))
+    all_cuisines = get_cuisines()
+    return get_data_matrix(all_cuisines)
 
