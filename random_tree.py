@@ -5,7 +5,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 LABELS = ["Algerian", "Argentinan", "Australian", "Belgian", "Bosnian","Brazilian", "Cameroonian", "Chilean", "Colombian", "Costa Rican", "Croatian", "Ecuadorian"]
 LABELS.append(["English", "French", "German", "Ghanan", "Greek", "Honduran", "Iranian", "Italian", "Ivory Coast", "Japanese", "Mexican", "Netherlands", "Nigerian", "Portugese"])
-LABELS.append(["Russian","South Korean", "Spanish", "Swiss", "American", "Uruguayan", "Chinese", "Indian", "Thai", "Turkish", "Cuban", "Ethiopian", "Vietnamese", 'Irish'])
+LABELS.append(["Russian", "Spanish", "American", "Uruguayan", "Chinese", "Indian", "Thai", "Turkish", "Cuban", "Ethiopian", "Vietnamese"])
 LABELS = np.hstack(LABELS)
 AVOID = ["F"]
 
@@ -39,7 +39,7 @@ def get_correlations(country, data):
 		if LABELS[max_index] in AVOID:
 			normalized_perc[max_index] = -1
 		else:
-			if len(AVOID) > 10:
+			if len(AVOID) > 5:
 				del AVOID[0:1]
 				print(AVOID)
 				# AVOID = hi

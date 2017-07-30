@@ -4,7 +4,6 @@ import backend_link as backend
 app = Flask(__name__)
 
 
-
 @app.route('/')
 def init_request():
     backend.model_prediction = backend.update_model(backend.model_prediction)
