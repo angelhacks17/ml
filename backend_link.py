@@ -8,6 +8,3 @@ def initialize_model():
     r = requests.get(init_url)
     print(r.text);
     return model.get_correlations(r.text, model.get_init_data())
-
-
-prediction = initialize_model()
