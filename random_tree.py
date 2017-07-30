@@ -33,6 +33,7 @@ def get_correlations(country, data):
 	max = np.max(normalized_perc)
 	max_index = normalized_perc.index(max)
 	print(LABELS[max_index])
+	return LABELS[max_index]
 
 
 def get_init_data():
@@ -50,4 +51,4 @@ def get_init_data():
 	all_data = np.asarray(all_data, dtype=float)
 	return all_data
 
-#get_correlations("England", all_data)
+# get_correlations("English", get_init_data())
