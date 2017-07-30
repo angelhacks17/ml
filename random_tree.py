@@ -3,9 +3,9 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 
 
-LABELS = ["Algeria", "Argentina", "Australia", "Belgium", "Bosnia and Herzegovina","Brazil", "Cameroon", "Chile", "Colombia", "Costa Rica", "Croatia", "Ecuador"]
-LABELS.append(["England", "France", "Germany", "Ghana", "Greece", "Honduras", "Iran", "Italy", "Ivory Coast", "Japan", "Mexico", "Netherlands", "Nigeria", "Portugal"])
-LABELS.append(["Russia","South Korea", "Spain", "Switzerland", "United States", "Uruguay", "China", "India", "Thailand", "Turkey", "Cuba", "Ethiopia", "Vietnam", 'Ireland'])
+LABELS = ["Algerian", "Argentinan", "Australian", "Belgian", "Bosnian","Brazilian", "Cameroonian", "Chilean", "Colombian", "Costa Rican", "Croatian", "Ecuadorian"]
+LABELS.append(["English", "French", "German", "Ghanan", "Greek", "Honduran", "Iranian", "Italian", "Ivory Coast", "Japanese", "Mexican", "Netherlands", "Nigerian", "Portugese"])
+LABELS.append(["Russian","South Korean", "Spanish", "Swiss", "American", "Uruguayan", "Chinese", "Indian", "Thai", "Turkish", "Cuban", "Ethiopian", "Vietnamese", 'Irish'])
 LABELS = np.hstack(LABELS)
 
 def get_correlations(country, data):
@@ -34,23 +34,20 @@ def get_correlations(country, data):
 	max_index = normalized_perc.index(max)
 	print(LABELS[max_index])
 
-df = pd.read_csv('food-world-cup-data.csv', encoding='latin1')
-all_data = []
-for index, row in df.iterrows():
-	user_data = []
-	scores = row[3:len(row)-5]
-	for score in scores:
-		if np.isnan(score):
-			user_data.append(0)
-		else:
-			user_data.append(float(score))
-	all_data.append(user_data)
-all_data = np.asarray(all_data, dtype=float)
 
-list1 = []
-list2 = []
-for data in all_data:
-	list1.append(data[0])
-	list2.append(data[10])
-	
-get_correlations("England", all_data)
+def get_init_data():
+	df = pd.read_csv('food-world-cup-data.csv', encoding='latin1')
+	all_data = []
+	for index, row in df.iterrows():
+		user_data = []
+		scores = row[3:len(row)-5]
+		for score in scores:
+			if np.isnan(score):
+				user_data.append(0)
+			else:
+				user_data.append(float(score))
+		all_data.append(user_data)
+	all_data = np.asarray(all_data, dtype=float)
+	return all_data
+
+#get_correlations("England", all_data)
