@@ -39,7 +39,7 @@ def get_correlations(country, data):
 		if LABELS[max_index] in AVOID:
 			normalized_perc[max_index] = -1
 		else:
-			if len(AVOID) > 5:
+			if len(AVOID) > 10:
 				del AVOID[0:1]
 				print(AVOID)
 				# AVOID = hi
