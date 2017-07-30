@@ -6,8 +6,10 @@ url = 'https://angelhacks17-nihaleg.c9users.io/'
 def initialize_model():
     init_url = url + 'initial'
     r = requests.get(init_url)
-    print(r.text);
-    return model.get_correlations(r.text, model.get_init_data())
+    return model.predict(r.text)
 
-def update_model():
-    return
+def update_model(current_cuisine):
+    return model.predict(current_cuisine)
+
+
+model_prediction = initialize_model()

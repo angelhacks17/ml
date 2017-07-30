@@ -7,8 +7,11 @@ LABELS = ["Algerian", "Argentinan", "Australian", "Belgian", "Bosnian","Brazilia
 LABELS.append(["English", "French", "German", "Ghanan", "Greek", "Honduran", "Iranian", "Italian", "Ivory Coast", "Japanese", "Mexican", "Netherlands", "Nigerian", "Portugese"])
 LABELS.append(["Russian","South Korean", "Spanish", "Swiss", "American", "Uruguayan", "Chinese", "Indian", "Thai", "Turkish", "Cuban", "Ethiopian", "Vietnamese", 'Irish'])
 LABELS = np.hstack(LABELS)
+AVOID = ["F"]
+
 
 def get_correlations(country, data):
+	# print(AVOID)
 	all_cor = []
 	label_list = LABELS.tolist()
 	index = label_list.index(country)
@@ -29,14 +32,30 @@ def get_correlations(country, data):
 	for x in all_cor:
 		val = x[0][1]
 		normalized_perc.append(val)
-	print(normalized_perc)
-	max = np.max(normalized_perc)
-	max_index = normalized_perc.index(max)
+	# print(normalized_perc)
+	while(True):
+		max = np.max(normalized_perc)
+		max_index = normalized_perc.index(max)
+		if LABELS[max_index] in AVOID:
+			normalized_perc[max_index] = -1
+		else:
+			if len(AVOID) > 5:
+				del AVOID[0:1]
+				print(AVOID)
+				# AVOID = hi
+			break
 	print(LABELS[max_index])
-	return LABELS[max_index]
+	print("\n")
+	return LABELS[max_index], normalized_perc
 
 
-def get_init_data():
+def predict(label):
+	AVOID.append(label)
+	print(label)
+	new_cuisine, prob_values  = get_correlations(label, get_data())
+	return new_cuisine
+
+def get_data():
 	df = pd.read_csv('food-world-cup-data.csv', encoding='latin1')
 	all_data = []
 	for index, row in df.iterrows():
@@ -51,4 +70,4 @@ def get_init_data():
 	all_data = np.asarray(all_data, dtype=float)
 	return all_data
 
-# get_correlations("English", get_init_data())
+# predict("Indian")
